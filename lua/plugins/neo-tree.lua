@@ -11,7 +11,19 @@ return 	{
 		require("neo-tree").setup({
 			close_if_last_window = false,
 			popup_border_style = "rounded",
+			default_component_configs = {
+				file_size = {
+					enabled = false,
+				},
+				last_modified = {
+					enabled = false,
+				},
+			},
 			filesystem = {
+				filtered_items = {
+					hide_dotfiles = false,
+					hide_gitignored = false,
+				},
 				follow_current_file = {
 					enabled = true,
 					leave_dirs_open=false,
