@@ -1,6 +1,10 @@
 print("hello Java")
 
+local bundles = {
+  vim.fn.glob("/Users/terry/.config/java-debug/com.microsoft.java.debug.plugin-0.51.0.jar", 1),
+};
 
+vim.list_extend(bundles, vim.split(vim.fn.glob("/Users/terry/Workspaces/github/vscode-java-test/server/*.jar", 1), "\n"))
 
 local config = {
 	cmd = {'/opt/homebrew/Cellar/jdtls/1.31.0/bin/jdtls'},
@@ -8,6 +12,7 @@ local config = {
 	root_dir = vim.fs.dirname(vim.fs.find({'gradlew', '.git', 'mvnw'}, { upward = true })[1]),
 
 	init_options = {
+		bundles = bundles,
 		settings = {
 			java = {
 				imports = {
