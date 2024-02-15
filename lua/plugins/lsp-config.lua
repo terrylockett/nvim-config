@@ -9,9 +9,12 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = {"lua_ls", "gradle_ls", "groovyls"}
+				ensure_installed = {"lua_ls", "gradle_ls", "groovyls",}
 			})
 		end
+	},
+	{
+		url = "https://gitlab.com/schrieveslaach/sonarlint.nvim.git"
 	},
 	{
 		"neovim/nvim-lspconfig",
@@ -23,12 +26,25 @@ return {
 				cmd = {"java", "-jar", "/Users/terry/.config/groovyls/groovy-language-server-all.jar" },
 				filetypes = {"groovy", "gradle"},
 			})
+			require('sonarlint').setup({
+				server = {
+					cmd = {
+						'sonarlint-language-server',
+						'-stdio',
+						'-analyzers',
+						vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarpython.jar"),
+						vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarcfamily.jar"),
+						vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjava.jar"),
+					}
+				},
+				filetypes = {
+					--'python',
+					--'cpp',
+					'java',
+				}
 
-			vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
-			vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
-			vim.keymap.set('n', 'gr', vim.lsp.buf.references, {})
-			vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, {})
-			vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
+			})
+
 		end
 	}
 }

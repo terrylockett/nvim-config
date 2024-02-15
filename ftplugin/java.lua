@@ -4,10 +4,12 @@ local bundles = {
   vim.fn.glob("/Users/terry/.config/java-debug/com.microsoft.java.debug.plugin-0.51.0.jar", 1),
 };
 
+local workspace_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+
 vim.list_extend(bundles, vim.split(vim.fn.glob("/Users/terry/Workspaces/github/vscode-java-test/server/*.jar", 1), "\n"))
 
 local config = {
-	cmd = {'/opt/homebrew/Cellar/jdtls/1.31.0/bin/jdtls'},
+	cmd = {'/opt/homebrew/Cellar/jdtls/1.31.0/bin/jdtls', '-data', "/Users/terry/Workspaces/tmpdata/" .. workspace_dir},
 
 	root_dir = vim.fs.dirname(vim.fs.find({'gradlew', '.git', 'mvnw'}, { upward = true })[1]),
 
