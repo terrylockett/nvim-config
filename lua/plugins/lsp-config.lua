@@ -23,7 +23,7 @@ return {
 			lspconfig.lua_ls.setup({})
 			lspconfig.gradle_ls.setup({})
 			lspconfig.groovyls.setup({
-				cmd = {"java", "-jar", "/Users/terry/.config/groovyls/groovy-language-server-all.jar" },
+				cmd = {"java", "-jar", os.getenv("GROOVY_LS_JAR") },
 				filetypes = {"groovy", "gradle"},
 			})
 			require('sonarlint').setup({

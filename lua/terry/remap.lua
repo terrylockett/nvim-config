@@ -8,18 +8,22 @@ vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
 vim.keymap.set('n', 'gr', vim.lsp.buf.references, {})
 vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, {})
 vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
-
-
+vim.keymap.set('n', '<leader>o', vim.diagnostic.open_float, {})
 
 -- Debug Adapter
 vim.keymap.set("n", "<leader>b", function() require'dap'.toggle_breakpoint() end)
-vim.keymap.set("n", "<leader>tc", function() require'jdtls'.test_class() end)
-vim.keymap.set("n", "<leader>tm", function() require'jdtls'.test_nearest_method() end)
-
 
 -- NetoTest
-	--run current file
-vim.keymap.set("n", "<leader>gtf", function() require("neotest").run.run(vim.fn.expand("%")) end)
+vim.keymap.set("n", "<leader>tc", function() require("neotest").run.run(vim.fn.expand("%")) end)
+vim.keymap.set("n", "<leader>tm", function() require("neotest").run.run() end)
+vim.keymap.set("n", "<leader>td", function() require("neotest").run.run({strategy = "dap"}) end)
+vim.keymap.set("n", "<leader>ts", function() require("neotest").run.stop() end)
+
+vim.keymap.set("n", "<leader>to", function() require("neotest").output.open() end)
+vim.keymap.set("n", "<leader>tp", function() require("neotest").output_panel.toggle() end)
+vim.keymap.set("n", "<leader>ts", function() require("neotest").summary.toggle() end)
+
+vim.keymap.set("n", "<leader>tl", function() require("neotest").run.run({vim.fn.expand("%:p:h"), extra_args = {"module"}}) end)
 
 -- BarBar
 	-- move tabs 

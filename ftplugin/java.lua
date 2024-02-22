@@ -1,15 +1,15 @@
 print("hello Java")
 
 local bundles = {
-  vim.fn.glob("/Users/terry/.config/java-debug/com.microsoft.java.debug.plugin-0.51.0.jar", 1),
+  vim.fn.glob(os.getenv("JAVA_DEBUG"), 1),
 };
 
 local workspace_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 
-vim.list_extend(bundles, vim.split(vim.fn.glob("/Users/terry/Workspaces/github/vscode-java-test/server/*.jar", 1), "\n"))
+vim.list_extend(bundles, vim.split(vim.fn.glob(os.getenv("JAVA_VSCODE_TEST"), 1), "\n"))
 
 local config = {
-	cmd = {'/opt/homebrew/Cellar/jdtls/1.31.0/bin/jdtls', '-data', "/Users/terry/Workspaces/tmpdata/" .. workspace_dir},
+	cmd = {os.getenv("JDTLS_PATH"), '-data', os.getenv("JDTLS_DATA_PATH") .. workspace_dir},
 
 	root_dir = vim.fs.dirname(vim.fs.find({'gradlew', '.git', 'mvnw'}, { upward = true })[1]),
 
@@ -38,11 +38,11 @@ local config = {
 			configuration = {
 				{
 					name = "JavaSE-11",
-					path = "/Library/Java/JavaVirtualMachines/jdk-11.0.16.1.jdk/Contents/Home",
+					path = os.getenv("JAVA_SE_11")
 				},
 				{
 					name = "JavaSE-17",
-					path = "/opt/homebrew/Cellar/openjdk@17/17.0.9/libexec/openjdk.jdk/Contents/Home",
+					path = os.getenv("JAVA_SE_17")
 				},
 			},
 		}
