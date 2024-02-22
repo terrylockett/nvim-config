@@ -5,6 +5,7 @@ return 	{
 	config = function()
 		local catConfig = require("catppuccin")
 		catConfig.setup({
+			-- Latte, Frappe, Macchiato, Mocha
 			flavour = "Macchiato"
 		})
 

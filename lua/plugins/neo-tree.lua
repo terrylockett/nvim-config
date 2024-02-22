@@ -7,8 +7,6 @@ return 	{
 		"MunifTanjim/nui.nvim",
 	},
 	config = function()
-		vim.keymap.set("n", "<leader>n", ":Neotree filesystem reveal left<CR>")
-		vim.keymap.set("n", "<leader>m", ":Neotree filesystem close<CR>")
 		require("neo-tree").setup({
 			close_if_last_window = false,
 			popup_border_style = "rounded",
@@ -37,7 +35,7 @@ return 	{
 				statusline = true,
 			},
 			window = {
-				auto_expand_width = true,
+				auto_expand_width = false,
 			},
 		})
 	end
