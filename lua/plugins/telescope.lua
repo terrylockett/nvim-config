@@ -12,6 +12,14 @@ return {
 		"nvim-telescope/telescope-ui-select.nvim",
 		config = function()
 			require("telescope").setup {
+				defaults = {
+					i = {
+						['<C-p>'] = require('telescope.actions.layout').toggle_preview
+					},
+					preview = {
+						hide_on_startup = true
+					},
+				},
 				extensions = {
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown {
